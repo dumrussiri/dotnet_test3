@@ -18,6 +18,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public string hello()
+    {
+        return "ok";
+    }
+
+
     public IActionResult Privacy()
     {
         return View();
