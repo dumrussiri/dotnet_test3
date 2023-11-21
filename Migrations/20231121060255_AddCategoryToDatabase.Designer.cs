@@ -12,7 +12,7 @@ using dotnet_3.Data;
 namespace dotnet_3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231120172846_AddCategoryToDatabase")]
+    [Migration("20231121060255_AddCategoryToDatabase")]
     partial class AddCategoryToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,17 +26,23 @@ namespace dotnet_3.Migrations
 
             modelBuilder.Entity("dotnet_3.Models.Category", b =>
                 {
-                    b.Property<string>("UAccID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UAccUsername")
+                    b.Property<string>("UAccID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UAccID");
+                    b.Property<string>("UAccUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });

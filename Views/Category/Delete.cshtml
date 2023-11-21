@@ -1,11 +1,15 @@
 @model Category
 
 <form method="post" asp-action="Delete">
-	<input asp-for="UAccID" hidden />
+	<input asp-for="Id" hidden />
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
 			<h2 class="text-primary">Delete Category</h2>
 			<hr />
+		</div>
+        <div class="mb-3">
+			<label asp-for="UAccID"></label>
+			<input asp-for="UAccID" disabled class="form-control" />
 		</div>
 		<div class="mb-3">
 			<label asp-for="UAccUsername"></label>

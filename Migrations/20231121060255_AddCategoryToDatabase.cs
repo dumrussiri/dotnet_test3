@@ -13,13 +13,15 @@ namespace dotnet_3.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    UAccID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UAccUsername = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UAccID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UAccUsername = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.UAccID);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
         }
 
