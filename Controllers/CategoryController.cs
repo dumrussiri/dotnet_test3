@@ -31,7 +31,11 @@ public class CategoryController : Controller
     {
         if (obj.UAccID == obj.UAccUsername.ToString())
         {
+<<<<<<< HEAD
             ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
+=======
+            ModelState.AddModelError("UAccID", "UAccUsername cannot exactly match the UAccID.");
+>>>>>>> 02d59a0535d88f1823aaa847243edc4046a8d5ed
         }
         if (ModelState.IsValid)
         {
@@ -44,13 +48,13 @@ public class CategoryController : Controller
     }
 
     //GET
-    public IActionResult Edit(int? UAccID)
+    public IActionResult Edit(int? id)
     {
-        if(UAccID==null || UAccID == 0)
+        if(id==null || id == 0)
         {
             return NotFound();
         }
-        var categoryFromDb = _db.Categories.Find(UAccID);
+        var categoryFromDb = _db.Categories.Find(id);
        
 
         if (categoryFromDb == null)
@@ -68,7 +72,7 @@ public class CategoryController : Controller
     {
         if (obj.UAccID == obj.UAccUsername.ToString())
         {
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
+            ModelState.AddModelError("UAccID", "UAccUsername cannot exactly match the UAccID.");
         }
         if (ModelState.IsValid)
         {
@@ -80,13 +84,13 @@ public class CategoryController : Controller
         return View(obj);
     }
 
-    public IActionResult Delete(int? UAccID)
+    public IActionResult Delete(int? id)
     {
-        if (UAccID == null || UAccID == 0)
+        if (id == null || id == 0)
         {
             return NotFound();
         }
-        var categoryFromDb = _db.Categories.Find(UAccID);
+        var categoryFromDb = _db.Categories.Find(id);
 
         if (categoryFromDb == null)
         {
@@ -99,9 +103,9 @@ public class CategoryController : Controller
     //POST
     [HttpPost,ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeletePOST(int? UAccID)
+    public IActionResult DeletePOST(int? id)
     {
-        var obj = _db.Categories.Find(UAccID);
+        var obj = _db.Categories.Find(id);
         if (obj == null)
         {
             return NotFound();
