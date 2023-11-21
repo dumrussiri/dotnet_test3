@@ -29,15 +29,10 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Category obj)
     {
-        if (obj.UAccID == obj.UAccID.ToString())
-        {
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
-        }
         if (ModelState.IsValid)
         {
             _db.Categories.Add(obj);
             _db.SaveChanges();
-            TempData["success"] = "Category created successfully";
             return RedirectToAction("Index");
         }
         return View(obj);   
@@ -46,10 +41,6 @@ public class CategoryController : Controller
     //GET
     public IActionResult Edit(string? UAccID)
     {
-        if(UAccID==null || UAccID == UAccID.ToString())
-        {
-            return NotFound();
-        }
         var categoryFromDb = _db.Categories.Find(UAccID);
        
 
@@ -66,10 +57,6 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Category obj)
     {
-        if (obj.UAccID == obj.UAccID.ToString())
-        {
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
-        }
         if (ModelState.IsValid)
         {
             _db.Categories.Update(obj);
@@ -82,10 +69,6 @@ public class CategoryController : Controller
 
     public IActionResult Delete(string? UAccID)
     {
-        if (UAccID == null || UAccID == UAccID.ToString())
-        {
-            return NotFound();
-        }
         var categoryFromDb = _db.Categories.Find(UAccID);
 
         if (categoryFromDb == null)
@@ -109,7 +92,6 @@ public class CategoryController : Controller
 
         _db.Categories.Remove(obj);
             _db.SaveChanges();
-        TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
         
     }
