@@ -29,6 +29,10 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Category obj)
     {
+        if (obj.UAccID == obj.UAccID.ToString())
+        {
+            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
+        }
         if (ModelState.IsValid)
         {
             _db.Categories.Add(obj);
@@ -40,9 +44,9 @@ public class CategoryController : Controller
     }
 
     //GET
-    public IActionResult Edit(int? UAccID)
+    public IActionResult Edit(string? UAccID)
     {
-        if(UAccID==null || UAccID == 0)
+        if(UAccID==null || UAccID == UAccID.ToString())
         {
             return NotFound();
         }
@@ -62,6 +66,10 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Category obj)
     {
+        if (obj.UAccID == obj.UAccID.ToString())
+        {
+            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
+        }
         if (ModelState.IsValid)
         {
             _db.Categories.Update(obj);
@@ -72,9 +80,9 @@ public class CategoryController : Controller
         return View(obj);
     }
 
-    public IActionResult Delete(int? UAccID)
+    public IActionResult Delete(string? UAccID)
     {
-        if (UAccID == null || UAccID == 0)
+        if (UAccID == null || UAccID == UAccID.ToString())
         {
             return NotFound();
         }
@@ -91,7 +99,7 @@ public class CategoryController : Controller
     //POST
     [HttpPost,ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeletePOST(int? UAccID)
+    public IActionResult DeletePOST(string? UAccID)
     {
         var obj = _db.Categories.Find(UAccID);
         if (obj == null)
