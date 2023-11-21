@@ -29,10 +29,6 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Category obj)
     {
-        if (obj.UAccID == obj.UAccUsername.ToString())
-        {
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
-        }
         if (ModelState.IsValid)
         {
             _db.Categories.Add(obj);
@@ -66,10 +62,6 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Category obj)
     {
-        if (obj.UAccID == obj.UAccUsername.ToString())
-        {
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
-        }
         if (ModelState.IsValid)
         {
             _db.Categories.Update(obj);
