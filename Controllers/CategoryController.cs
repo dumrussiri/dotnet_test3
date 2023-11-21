@@ -31,11 +31,7 @@ public class CategoryController : Controller
     {
         if (obj.UAccID == obj.UAccUsername.ToString())
         {
-<<<<<<< HEAD
-            ModelState.AddModelError("UAccID", "The UAccUsername cannot exactly match the Name.");
-=======
             ModelState.AddModelError("UAccID", "UAccUsername cannot exactly match the UAccID.");
->>>>>>> 02d59a0535d88f1823aaa847243edc4046a8d5ed
         }
         if (ModelState.IsValid)
         {
