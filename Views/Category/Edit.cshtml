@@ -8,7 +8,8 @@
 		</div>
         <div class="mb-3">
 			<label asp-for="UAccID"></label>
-			<input asp-for="UAccID" disabled class="form-control" />
+			<input asp-for="UAccID" class="form-control" />
+			<span asp-validation-for="UAccUsername" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="UAccUsername"></label>
