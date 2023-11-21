@@ -29,19 +29,28 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Category obj)
     {
+        if (obj.UAccID == obj.UAccUsername.ToString())
+        {
+            ModelState.AddModelError("UAccID", "UAccUsername cannot exactly match the UAccID.");
+        }
         if (ModelState.IsValid)
         {
             _db.Categories.Add(obj);
             _db.SaveChanges();
+            TempData["success"] = "Category created successfully";
             return RedirectToAction("Index");
         }
         return View(obj);   
     }
 
     //GET
-    public IActionResult Edit(string? UAccID)
+    public IActionResult Edit(int? id)
     {
-        var categoryFromDb = _db.Categories.Find(UAccID);
+        if(id==null || id == 0)
+        {
+            return NotFound();
+        }
+        var categoryFromDb = _db.Categories.Find(id);
        
 
         if (categoryFromDb == null)
@@ -57,6 +66,10 @@ public class CategoryController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Category obj)
     {
+        if (obj.UAccID == obj.UAccUsername.ToString())
+        {
+            ModelState.AddModelError("UAccID", "UAccUsername cannot exactly match the UAccID.");
+        }
         if (ModelState.IsValid)
         {
             _db.Categories.Update(obj);
@@ -67,9 +80,13 @@ public class CategoryController : Controller
         return View(obj);
     }
 
-    public IActionResult Delete(string? UAccID)
+    public IActionResult Delete(int? id)
     {
-        var categoryFromDb = _db.Categories.Find(UAccID);
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+        var categoryFromDb = _db.Categories.Find(id);
 
         if (categoryFromDb == null)
         {
@@ -82,9 +99,9 @@ public class CategoryController : Controller
     //POST
     [HttpPost,ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public IActionResult DeletePOST(string? UAccID)
+    public IActionResult DeletePOST(int? id)
     {
-        var obj = _db.Categories.Find(UAccID);
+        var obj = _db.Categories.Find(id);
         if (obj == null)
         {
             return NotFound();
