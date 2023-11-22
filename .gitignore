@@ -10,12 +10,4 @@ obj/
 /node_modules
 /wwwroot/node_modules
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-# End of https://www.toptal.com/developers/gitignore/api/dotnetcore
-=======
-# End of https://www.toptal.com/developers/gitignore/api/dotnetcore
->>>>>>> 19f014896e58e48b7e6d810d694a4ffa11cb47e1
-=======
-# End of https://www.toptal.com/developers/gitignore/api/dotnetcore
->>>>>>> a8b8018f373ccc7153f428b047ab6fa4cc0f412b
+
