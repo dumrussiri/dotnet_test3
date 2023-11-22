@@ -80,6 +80,8 @@ public class CategoryController : Controller
         return View(obj);
     }
 
+
+    //GET
     public IActionResult Delete(int? id)
     {
         if (id == null || id == 0)
